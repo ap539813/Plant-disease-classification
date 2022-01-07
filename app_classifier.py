@@ -58,7 +58,36 @@ def prediction(model_path, class_dict):
         
         pred = model.predict(image).argmax()
         # st.write(class_dict)
-        st.write(f'Predicted Class is {class_dict[pred]}')
+        if class_dict[pred] == "Apple___Apple_scab":
+            st.error("This is not a healthy Apple Plant. It has a de named APPLE SCAB")
+            st.write("To know more about about the disease and it's cure check out this [link](https://arborjet.com/2019/03/28/apple-scab-symptoms-and-how-to-treat)")
+
+        elif class_dict[pred] == "Apple___Black_rot":
+            st.error("This is not a healthy Apple Plant. It has a de named BLACK ROT")
+            st.write("To know more about about the disease and it's cure check out this [link](https://extension.umn.edu/plant-diseases/black-rot-apple)")
+        
+        elif class_dict[pred] == "Apple___Cedar_apple_rust":
+            st.error("This is not a healthy Apple Plant. It has a disease named CEDAR APPLE RUST")
+            st.write("To know more about about the disease and it's cure check out this [link](https://gardenerspath.com/how-to/disease-and-pests/cedar-apple-rust-control/)")
+        
+        elif class_dict[pred] == "Apple___healthy":
+            st.success("Congrats This is a healthy Apple Plant")
+        
+        elif class_dict[pred] == "Grape___Black_rot":
+            st.error("This is not a healthy Grape Plant. It has a de named BLACK ROT")
+            st.write("To know more about about the disease and it's cure check out this [link](https://www.gardeningknowhow.com/edible/fruits/grapes/black-rot-grape-treatment.htm)")
+        
+        elif class_dict[pred] == "Grape___healthy":
+            st.success("Congrats This is a healthy Grape Plant")
+        
+        elif class_dict[pred] == "Grape___Esca_":
+            st.error("This is not a healthy Grape Plant. It has a de named ESCA")
+            st.write("To know more about about the disease and it's cure check out this [link](http://ipm.ucanr.edu/PMG/r302100511.html)")
+        
+        elif class_dict[pred] == "Grape___Leaf_blight_":
+            st.error("This is not a healthy Grape Plant. It has a de named LEAF BLIGHT")
+            st.write("To know more about about the disease and it's cure check out this [link](https://www.goodfruit.com/11-tips-to-beat-grape-fungal-diseases)")
+
 
 
 
