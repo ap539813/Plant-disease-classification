@@ -11,11 +11,14 @@ from keras.layers import Activation, Dropout, Flatten, Dense
 from keras import backend as K
 from keras.regularizers import l2
 
+# importing the local modules
+from important_variables import img_height, img_width
+
 from PIL import Image
 
 
 # Now we will define function to get train the model and return the model summary and performance
-def create_model():
+def create_model(input_shape):
     model = Sequential()
     model.add(Conv2D(32, (3, 3), input_shape=input_shape))
     model.add(Activation('relu'))
@@ -40,11 +43,11 @@ def create_model():
                   metrics=['accuracy'])
     return model
 
-img_width, img_height = 128, 128
+# img_width, img_height = 128, 128
 
 # @st.cache
-def prediction(model_path, class_dict):
-    model = create_model()
+def prediction(model_path, class_dict, input_shape):
+    model = create_model(input_shape)
     model.load_weights(model_path)
     uploaded_file = st.file_uploader("Choose an image...", type="jpg")
     if uploaded_file is not None:
