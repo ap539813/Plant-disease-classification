@@ -1,4 +1,8 @@
 from create_model import create_model
+from important_variables import img_height, img_width
+import streamlit as st
+from PIL import Image
+import numpy as np
 
 def prediction(model_path, class_dict, input_shape):
     model = create_model(input_shape)
