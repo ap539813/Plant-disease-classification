@@ -3,7 +3,7 @@ import streamlit as st
 import seaborn as sns
 
 # importing the local modules
-from important_variables import input_shape, data_url
+from important_variables import input_shape, data_url, css_file_path
 from prediction import prediction
 from add_style import local_css
 
@@ -22,6 +22,8 @@ alt.renderers.set_embed_options(scaleFactor=2)
 #             </style>
 #             """
 # st.markdown(hide_streamlit_style, unsafe_allow_html=True) 
+
+local_css(css_file_path)
 
 print(st.session_state)
 
@@ -43,7 +45,7 @@ def homepage():
 
     c2.markdown('')
     c2.markdown('')
-    continue_forward = c2.button('continue to the Application')
+    continue_forward = c2.button('Continue >>>')
 
     st.session_state['home_page'] = False
     # print(search_page)
@@ -55,16 +57,13 @@ def homepage():
         main()
 
 def main():
-    st.sidebar.title("Control Panel")
-    left_col, middle_col, right_col = st.columns(3)
-    palette = sns.color_palette("bright")
-
-    tick_size = 12
-    axis_title_size = 16
-
-
-
     # data = generate_data()
+    st.sidebar.markdown(
+    f'<img style="max-width: 100%; height: auto;" src="data:image/gif;base64,{data_url}" alt="homepage gif">',
+    unsafe_allow_html=True,)
+
+    st.sidebar.title("Control Panel")
+
     type_plant = st.sidebar.radio("Select Type of Plant: ", ('General Disease Detection', 'Apple Plant',
                                 'Grape Plant'))
 
