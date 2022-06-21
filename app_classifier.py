@@ -37,7 +37,8 @@ if __name__ == '__main__':
     type_plant = st.sidebar.radio("Select Type of Plant: ", ('General Disease Detection', 'Apple Plant',
                                 'Grape Plant'))
 
-
+    if type_plant == 'General Disease Detection':
+        st.markdown("Under Development!!!")
     if type_plant == 'Apple Plant':
         st.title(f"{type_plant} illness Classification Interface")
         class_dict = {0:'Apple___Apple_scab', 2:'Apple___Cedar_apple_rust',
@@ -49,3 +50,4 @@ if __name__ == '__main__':
         class_dict = {0:'Grape___Black_rot', 2:'Grape___healthy',
                 1:'Grape___Esca_', 3:'Grape___Leaf_blight_'}
         prediction('grape_cnn1.h5', class_dict, input_shape)
+
