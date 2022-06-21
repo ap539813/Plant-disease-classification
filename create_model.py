@@ -1,7 +1,7 @@
 from keras.models import Sequential
 from keras.layers import Conv2D, MaxPooling2D
 from keras.layers import Activation, Dropout, Flatten, Dense
-from keras.regularizers import l2
+# from keras.regularizers import l2
 
 # Now we will define function to get train the model and return the model summary and performance
 def create_model(input_shape):
