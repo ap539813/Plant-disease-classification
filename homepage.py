@@ -1,50 +1,34 @@
-from ctypes import alignment
-import altair as alt
 import streamlit as st
 
-## Basic setup and app layout
-st.set_page_config(layout="wide")
+def homepage():
+    # if st.session_state['home_page']:
+    home_image = st.image("Plant disease classification.gif")
 
-alt.renderers.set_embed_options(scaleFactor=2)
+    c1, c2, c3 = st.columns([1,3,1])
+    # col2.radio(
+    #         "Mode of Operation",
+    #         ("Search", "Configure"),
+    #     )
 
-hide_streamlit_style = """
-            <style>
-            #MainMenu {visibility: hidden;}
-            footer {visibility: hidden;}
-            div.stButton > button:first-child { 
-                color: #4F8BF9;
-                height: 3em;
-                width: 100%; 
-                }
-            
-            </style>
-            """
-
-st.markdown(hide_streamlit_style, unsafe_allow_html=True) 
-# page_bg_img = '''
-# <style>
-# body {
-# background-image: url("https://images.unsplash.com/photo-1542281286-9e0a16bb7366");
-# background-size: cover;
-# }
-# </style>
-# '''
-
-# st.markdown(page_bg_img, unsafe_allow_html=True)
-
-st.image("Plant Disease classification.png")
-
-col1, col2, col3 = st.columns([1,3,1])
-# col2.radio(
-#         "Mode of Operation",
-#         ("Search", "Configure"),
-#     )
-
-col2.markdown('<div style="text-align: center;"> <h2> Select mode of operation </h2></div>', unsafe_allow_html=True)
-# col2.markdown('<div style="text-align: center;">Hello World!</div>', unsafe_allow_html=True)
+    c2.markdown('<div style="text-align: center;"> <h2> Select mode of operation </h2></div>', unsafe_allow_html=True)
+    # col2.markdown('<div style="text-align: center;">Hello World!</div>', unsafe_allow_html=True)
 
 
-col2.button('Search')
-col2.button('Configure')
+    search_page = c2.button('Search')
+    config_page = c2.button('Configure')
 
-# col1.
+    st.session_state['home_page'] = False
+    # print(search_page)
+    
+
+    if search_page:
+        print('going for search!!')
+        st.session_state['mode'] = 'Search'
+        home_image.empty()
+        main()
+    if config_page:
+        print('going for configuration!!')
+        st.session_state['mode'] = 'Config'
+        home_image.empty()
+        main()
+
