@@ -5,7 +5,6 @@ import seaborn as sns
 # importing the local modules
 from important_variables import input_shape, data_url
 from prediction import prediction
-from homepage import homepage
 
 from PIL import Image
 
@@ -33,7 +32,7 @@ def homepage():
     # home_image = st.image("Plant disease classification.gif")
 
     st.markdown(
-    f'<img src="data:image/gif;base64,{data_url}" alt="cat gif">',
+    f'<img style="max-width: 100%; height: auto;" src="data:image/gif;base64,{data_url}" alt="homepage gif">',
     unsafe_allow_html=True,
 )
 
