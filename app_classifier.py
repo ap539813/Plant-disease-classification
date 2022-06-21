@@ -38,7 +38,7 @@ if __name__ == '__main__':
                                 'Grape Plant'))
 
     if type_plant == 'General Disease Detection':
-        st.markdown("Under Development!!!")
+        st.markdown("# Under Development!!!")
     if type_plant == 'Apple Plant':
         st.title(f"{type_plant} illness Classification Interface")
         class_dict = {0:'Apple___Apple_scab', 2:'Apple___Cedar_apple_rust',
