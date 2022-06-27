@@ -4,7 +4,7 @@ import seaborn as sns
 
 # importing the local modules
 from important_variables import input_shape, data_url, css_file_path
-from prediction import prediction
+from prediction import prediction_individual_plant
 from add_style import local_css
 
 from PIL import Image
@@ -73,13 +73,13 @@ def main():
         st.title(f"{type_plant} illness Classification Interface")
         class_dict = {0:'Apple___Apple_scab', 2:'Apple___Cedar_apple_rust',
                 1:'Apple___Black_rot', 3:'Apple___healthy'}
-        prediction('apple_cnn1.h5', class_dict, input_shape)
+        prediction_individual_plant('apple_cnn1.h5', class_dict, input_shape)
 
     elif type_plant == 'Grape Plant':
         st.title(f"{type_plant} illness Classification Interface")
         class_dict = {0:'Grape___Black_rot', 2:'Grape___healthy',
                 1:'Grape___Esca_', 3:'Grape___Leaf_blight_'}
-        prediction('grape_cnn1.h5', class_dict, input_shape)
+        prediction_individual_plant('grape_cnn1.h5', class_dict, input_shape)
 
 
 if __name__ == '__main__':
