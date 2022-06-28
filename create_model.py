@@ -1,6 +1,7 @@
 from keras.models import Sequential
-from keras.layers import Conv2D, MaxPooling2D, BatchNormalization, MaxPool2D
+from keras.layers import Conv2D, MaxPooling2D, BatchNormalization, MaxPool2D, AveragePooling2D
 from keras.layers import Activation, Dropout, Flatten, Dense
+from keras.optimizers import Adam
 # from keras.regularizers import l2
 
 # Now we will define function to get train the model and return the model summary and performance
@@ -56,5 +57,23 @@ def AlexNet(input_shape):
     model.add(Dense(38, activation='softmax'))
 
     model.compile(optimizer='adam', loss='categorical_crossentropy',
+                  metrics=['accuracy'])
+    return model
+
+
+def lenet_5(input_shape):
+    model = Sequential()
+    model.add(Conv2D(filters=6, kernel_size=(5,5), strides = 1, padding='same', activation='tanh', input_shape = input_shape))
+    model.add(AveragePooling2D())
+
+    model.add(Conv2D(filters=16, kernel_size=(5,5), strides = 1, padding='valid', activation='tanh'))
+    model.add(AveragePooling2D())
+
+    model.add(Conv2D(filters=16, kernel_size=(5,5), strides = 1, padding='valid', activation='tanh'))
+
+    model.add(Flatten())
+    model.add(Dense(84, activation='tanh'))
+    model.add(Dense(38, activation='softmax'))
+    model.compile(optimizer=Adam(lr=0.0005), loss='categorical_crossentropy',
                   metrics=['accuracy'])
     return model
