@@ -1,4 +1,4 @@
-from create_model import create_model
+from create_model import create_model, AlexNet
 from important_variables import img_height, img_width
 import streamlit as st
 from PIL import Image
@@ -53,9 +53,9 @@ def prediction_individual_plant(model_path, class_dict, input_shape):
             col2.write("To know more about about the disease and it's cure check out this [link](https://www.goodfruit.com/11-tips-to-beat-grape-fungal-diseases)")
 
 
-def prediction_general(model, class_dict, input_shape):
-    # model = create_model(input_shape)
-    # .load(model_path)
+def prediction_general(model_path, class_dict, input_shape):
+    model = AlexNet(input_shape)
+    model.load_weights(model_path)
     uploaded_file = st.file_uploader("Choose an image...", type="jpg")
     if uploaded_file is not None:
         # image = cv2.imread(uploaded_file)
