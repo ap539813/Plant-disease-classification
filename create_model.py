@@ -1,5 +1,5 @@
 from keras.models import Sequential
-from keras.layers import Conv2D, MaxPooling2D
+from keras.layers import Conv2D, MaxPooling2D, BatchNormalization, MaxPool2D
 from keras.layers import Activation, Dropout, Flatten, Dense
 # from keras.regularizers import l2
 
@@ -26,5 +26,35 @@ def create_model(input_shape):
     model.add(Activation('softmax'))
 
     model.compile(optimizer='rmsprop', loss='categorical_crossentropy',
+                  metrics=['accuracy'])
+    return model
+
+
+
+def AlexNet(input_shape):
+    model = Sequential()
+    model.add(Conv2D(filters=96, kernel_size=(11,11), strides = (4, 4), activation='relu', input_shape=input_shape))
+    model.add(BatchNormalization())
+    model.add(MaxPool2D(2, strides=(2, 2)))
+
+    model.add(Conv2D(256, (11,11),strides=(1,1), activation='relu',padding="same"))
+    model.add(BatchNormalization())
+
+    model.add(Conv2D(384, (3,3),strides=(1,1), activation='relu',padding="same"))
+    model.add(BatchNormalization())
+
+    model.add(Conv2D(384, (3,3),strides=(1,1), activation='relu',padding="same"))
+    model.add(BatchNormalization())
+
+    model.add(Conv2D(256, (3, 3), strides=(1, 1), activation='relu',padding="same"))
+    model.add(BatchNormalization())
+
+    model.add(MaxPool2D(2, strides=(2, 2)))
+    model.add(Flatten())
+    model.add(Dense(4096, activation='relu'))
+    model.add(Dense(4096, activation='relu'))
+    model.add(Dense(38, activation='softmax'))
+
+    model.compile(optimizer='adam', loss='categorical_crossentropy',
                   metrics=['accuracy'])
     return model
