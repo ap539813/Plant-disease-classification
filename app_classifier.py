@@ -4,7 +4,7 @@ import seaborn as sns
 
 # importing the local modules
 from important_variables import input_shape, data_url, css_file_path
-from prediction import prediction_individual_plant
+from prediction import prediction_individual_plant, prediction_general
 from add_style import local_css
 import tensorflow as tf
 
@@ -81,8 +81,8 @@ def main():
                 28: 'Tomato___Bacterial_spot', 29: 'Tomato___Early_blight', 30: 'Tomato___Late_blight', 31: 'Tomato___Leaf_Mold',
                 32: 'Tomato___Septoria_leaf_spot', 33: 'Tomato___Spider_mites Two-spotted_spider_mite', 34: 'Tomato___Target_Spot',
                 35: 'Tomato___Tomato_Yellow_Leaf_Curl_Virus', 36: 'Tomato___Tomato_mosaic_virus', 37: 'Tomato___healthy'}
-        model = tf.saved_model.load('my_lenet-2.hdf5')
-        prediction_individual_plant(model, class_dict, input_shape)
+        # model = tf.keras.models.load_model('my_general_model.hdf5')
+        prediction_general('my_general_model.hdf5', class_dict, input_shape)
 
     if type_plant == 'Apple Plant':
         st.title(f"{type_plant} illness Classification Interface")
