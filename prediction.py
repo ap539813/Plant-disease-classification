@@ -69,8 +69,12 @@ def prediction_general(model_path, class_dict, input_shape):
         
         pred = model.predict(image).argmax()
 
-        col2.error(f"This is not a healthy {class_dict[pred].split('___')[0].replace('_', ' ').upper()} Plant. It has a disease named {class_dict[pred].split('___')[1].replace('_', ' ').upper()}")
-        col2.write("To know more about about the disease and it's cure check out this [link](https://arborjet.com/2019/03/28/apple-scab-symptoms-and-how-to-treat)")
+        if 'healthy' in class_dict[pred].lower():
+            col2.success(f"This is a healthy {class_dict[pred].split('___')[0].replace('_', ' ').upper()} Plant")
+
+        else:
+            col2.error(f"This is not a healthy {class_dict[pred].split('___')[0].replace('_', ' ').upper()} Plant. It has a disease named {class_dict[pred].split('___')[1].replace('_', ' ').upper()}")
+            col2.write("To know more about about the disease and it's cure check out this [link](https://arborjet.com/2019/03/28/apple-scab-symptoms-and-how-to-treat)")
 
         
         # # st.write(class_dict)
