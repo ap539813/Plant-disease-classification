@@ -20,3 +20,6 @@ file_.close()
 
 
 css_file_path = 'style/style.css'
+
+model_path = 'my_lenet_5_weights.hdf5'
+model_path_alternate = 'my_alexnet_weights.hdf5'
