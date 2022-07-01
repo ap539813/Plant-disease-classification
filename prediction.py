@@ -1,5 +1,5 @@
 from create_model import create_model, AlexNet, lenet_5
-from important_variables import img_height, img_width
+from important_variables import img_height, img_width, model_path, model_path_alternate
 import streamlit as st
 from PIL import Image
 import numpy as np
@@ -7,6 +7,7 @@ import numpy as np
 def prediction_individual_plant(model_path, class_dict, input_shape):
     model = create_model(input_shape)
     model.load_weights(model_path)
+    st.markdown('### Model used: Lightweight CNN')
     uploaded_file = st.file_uploader("Choose an image...", type="jpg")
     if uploaded_file is not None:
         # image = cv2.imread(uploaded_file)
@@ -53,9 +54,15 @@ def prediction_individual_plant(model_path, class_dict, input_shape):
             col2.write("To know more about about the disease and it's cure check out this [link](https://www.goodfruit.com/11-tips-to-beat-grape-fungal-diseases)")
 
 
-def prediction_general(model_path, class_dict, input_shape):
-    model = AlexNet(input_shape)
-    model.load_weights(model_path)
+def prediction_general(class_dict, input_shape):
+    try:
+        model = lenet_5(input_shape)
+        model.load_weights(model_path)
+        st.markdown('### Model used: LeNet')
+    except:
+        model = AlexNet(input_shape)
+        model.load_weights(model_path_alternate)
+        st.markdown('### Model used: AlexNet')
     uploaded_file = st.file_uploader("Choose an image...", type="jpg")
     if uploaded_file is not None:
         # image = cv2.imread(uploaded_file)
