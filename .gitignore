@@ -1,5 +1,4 @@
 
 *.pyc
 Plant disease classification.gif
-my_general_model.hdf5
-my_lenet_5_weights.hdf5
+*.hdf5
