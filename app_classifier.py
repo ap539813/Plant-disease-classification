@@ -3,7 +3,7 @@ import streamlit as st
 import seaborn as sns
 
 # importing the local modules
-from important_variables import input_shape, data_url, css_file_path
+from important_variables import input_shape, data_url, css_file_path, model_path
 from prediction import prediction_individual_plant, prediction_general
 from add_style import local_css
 import tensorflow as tf
@@ -82,7 +82,7 @@ def main():
                 32: 'Tomato___Septoria_leaf_spot', 33: 'Tomato___Spider_mites Two-spotted_spider_mite', 34: 'Tomato___Target_Spot',
                 35: 'Tomato___Tomato_Yellow_Leaf_Curl_Virus', 36: 'Tomato___Tomato_mosaic_virus', 37: 'Tomato___healthy'}
         # model = tf.keras.models.load_model('my_general_model.hdf5')
-        prediction_general('my_general_model.hdf5', class_dict, input_shape)
+        prediction_general(class_dict, input_shape)
 
     if type_plant == 'Apple Plant':
         st.title(f"{type_plant} illness Classification Interface")
